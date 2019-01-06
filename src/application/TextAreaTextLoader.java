@@ -1,7 +1,7 @@
 package application;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.Scanner;
 
 import javafx.scene.control.TextArea;
@@ -11,24 +11,29 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class TextAreaTextLoader {
 	private static FileChooser fileChooser;
-	
+
 	private TextAreaTextLoader() {
 	}
-	
+
 	public static void showFileChooser() {
 		fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Text File");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Text files", "*.txt"));
 	}
-	
-	public static void setTextFromFile(TextArea mainTextArea) throws FileNotFoundException {
+
+	public static void setTextFromFile(TextArea mainTextArea) {
 
 		File file = fileChooser.showOpenDialog(new Stage());
-		Scanner reader = new Scanner(file);
-		reader.useDelimiter("\\Z"); 
-		mainTextArea.setText(reader.next());
-		reader.close();
-		
+		Scanner reader;
+		try {
+			
+			reader = new Scanner(file);
+			reader.useDelimiter("\\Z");
+			mainTextArea.setText(reader.next());
+			reader.close();
+
+		} catch (Exception e) {
+		}
 	}
 
 }
