@@ -67,19 +67,11 @@
 					</items>
 				</Menu>
 
-				<Menu mnemonicParsing="false" text="Help">
+				<Menu mnemonicParsing="false" text="Other">
 					<items>
-						<MenuItem mnemonicParsing="false" text="About" />
+						<MenuItem mnemonicParsing="false" text="About" onAction="#showAbout" />
 					</items>
 				</Menu>
-
-				<Menu mnemonicParsing="false" text="Settings">
-					<items>
-						<MenuItem mnemonicParsing="false" text="Colors..." onAction="#showColorChanger"/>
-					</items>
-				</Menu>
-
-
 			</menus>
 			<cursor>
 				<Cursor fx:constant="HAND" />

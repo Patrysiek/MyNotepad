@@ -30,5 +30,11 @@
     	<artifactId>jfoenix</artifactId>
     	<version>8.0.8</version>
 	</dependency>
+<dependency>
+    <groupId>org.fxmisc.richtext</groupId>
+    <artifactId>richtextfx</artifactId>
+    <version>0.4.1</version>
+</dependency>
+	
   </dependencies>
 </project>

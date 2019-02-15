@@ -7,20 +7,14 @@ import com.jfoenix.controls.JFXDecorator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.paint.Color;
 
-public class MainController implements ChangeFontListener,IColorChanger{
+public class MainController implements ChangeFontListener{
 
 	@FXML TextArea mainTextArea;
 	@FXML MenuItem wrapper;
@@ -72,7 +66,11 @@ public class MainController implements ChangeFontListener,IColorChanger{
 		fontController.setChangeFontListener(this);
 		setNewScene(root,200,200);
 	}
-
+	public void showAbout() throws IOException {
+		FXMLLoader loader = new FXMLLoader((getClass().getResource("/layout/AboutLayout.fxml")));
+		Parent root = loader.load();
+		setNewScene(root,200,200);
+	}
 
 	private void setNewScene(Parent root,int width,int height) {
 		Stage stage = new Stage();
@@ -85,17 +83,6 @@ public class MainController implements ChangeFontListener,IColorChanger{
 		stage.show();
 		
 	}
-
-	public void showColorChanger() throws IOException {
-		FXMLLoader loader = new FXMLLoader((getClass().getResource("/layout/ColorChangerLayout.fxml")));
-		Parent root = loader.load();
-		ColorChangerController colorController = loader.getController();
-		colorController.setChangeColorListener(this);
-		setNewScene(root,200,230);
-	}
-
-
-
 	private void setWrapperText() {
 		boolean isWrap = mainTextArea.wrapTextProperty().get();
 		mainTextArea.wrapTextProperty().set(!isWrap);
@@ -109,12 +96,6 @@ public class MainController implements ChangeFontListener,IColorChanger{
 	@Override
 	public void changeFont(String font, int fontSize) {
 				mainTextArea.setFont(new Font(font, fontSize));
-	}
-
-	@Override
-	public void changeColors(Color fontColor, Color backgroundColor) {
-		 Region region = ( Region ) mainTextArea.lookup( ".content" );
-		    region.setBackground( new Background( new BackgroundFill( backgroundColor, CornerRadii.EMPTY, Insets.EMPTY ) ) );
 	}
 
 
