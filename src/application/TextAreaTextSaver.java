@@ -6,18 +6,52 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class TextAreaTextSaver {
-	private static FileChooser fileChooser;
+	private  FileChooser fileChooser;
+	private String pathToFile;
 
-	private TextAreaTextSaver() {
+	public  void saveTextToFileAs(String text) {
+			initFileChooser();
+		try {
+			FileWriter fileWriter;
+			File file = fileChooser.showSaveDialog(new Stage());
+
+			if (file != null) {
+				fileWriter = new FileWriter(file);
+				PrintWriter printWriter = new PrintWriter(fileWriter);
+				printWriter.printf(text);
+				printWriter.close();
+				pathToFile = file.getPath();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	public  void saveTextToFile(String text) {
+	try {
+		FileWriter fileWriter;
+	
+		if (pathToFile != null) {
+			fileWriter = new FileWriter(pathToFile);
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			printWriter.printf(text);
+			printWriter.close();
+		}
+		else
+			saveTextToFileAs(text);
 
-	public static void showFileChooser() {
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+
+	private void initFileChooser() {
 		ExtensionFilter extFiler = new ExtensionFilter("Text files", "*.txt");
 		fileChooser = new FileChooser();
 		fileChooser.setTitle("Save Text File");
@@ -26,21 +60,7 @@ public class TextAreaTextSaver {
 		fileChooser.setSelectedExtensionFilter(extFiler);
 	}
 
-	public static void saveTextToFile(TextArea mainTextArea) {
-			
-		try {
-			FileWriter fileWriter;
-			File file = fileChooser.showSaveDialog(new Stage());
-			fileWriter = new FileWriter(file);
-
-			PrintWriter printWriter = new PrintWriter(fileWriter);
-			printWriter.printf(mainTextArea.getText());
-			printWriter.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void setPathToFile(String pathToFile) {
+		this.pathToFile = pathToFile;
 	}
-
-
 }

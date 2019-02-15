@@ -5,53 +5,85 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import application.MainController?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" />
-   </padding>
-   <children>
-      <TextArea fx:id="mainTextArea" layoutX="20.0" layoutY="31.0" prefHeight="434.0" prefWidth="610.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" >
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor></TextArea>
-      <ScrollBar layoutX="592.0" layoutY="34.0" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="429.0" prefWidth="18.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
-      <MenuBar layoutX="20.0" layoutY="-2.0" prefHeight="30.0" prefWidth="170.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="10.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items> 
-              <MenuItem mnemonicParsing="false" text="Open" onAction="#menuItemOpenAction"/>
-              <MenuItem mnemonicParsing="false" text="Save as" onAction="#menuItemSaveAction"/>
-              <MenuItem mnemonicParsing="false" text="Open New Window" onAction="#menuItemNewWindowAction"/>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-           <Menu mnemonicParsing="false" text="Settings">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </MenuBar>
-   </children>
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #222222;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController" >
+	<cursor>
+		<Cursor fx:constant="DEFAULT" />
+	</cursor>
+	<padding>
+		<Insets bottom="5.0" left="5.0" right="5.0" />
+	</padding>
+	<children>
+		<TextArea fx:id="mainTextArea" layoutX="20.0" layoutY="31.0" prefHeight="434.0" prefWidth="610.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0">
+			<cursor>
+				<Cursor fx:constant="TEXT" />
+			</cursor>
+		</TextArea>
+
+		<MenuBar layoutX="20.0" layoutY="-2.0" prefHeight="32.0" prefWidth="970.0" stylesheets="layout/menu_bar.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+			<menus >
+				<Menu mnemonicParsing="false" text="File" >
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#menuItemOpenAction" text="Open">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+
+						<MenuItem mnemonicParsing="false" onAction="#menuItemSaveAction" text="Save">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						
+						<MenuItem mnemonicParsing="false" onAction="#menuItemSaveAsAction" text="Save As">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+
+						<MenuItem mnemonicParsing="false" onAction="#menuItemNewWindowAction" text="Open New Window">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close">
+							<accelerator>
+								<KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+
+					</items>
+				</Menu>
+
+				<Menu mnemonicParsing="false" text="Edit">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#deleteSelectedText" text="Delete" />
+						<MenuItem fx:id="wrapper" mnemonicParsing="false" onAction="#wrapText" text="" />
+						<MenuItem mnemonicParsing="false" onAction="#showFontChanger" text="Font" />
+					</items>
+				</Menu>
+
+				<Menu mnemonicParsing="false" text="Help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+
+				<Menu mnemonicParsing="false" text="Settings">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Colors..." onAction="#showColorChanger"/>
+					</items>
+				</Menu>
+
+
+			</menus>
+			<cursor>
+				<Cursor fx:constant="HAND" />
+			</cursor>
+		</MenuBar>
+	</children>
 </AnchorPane>

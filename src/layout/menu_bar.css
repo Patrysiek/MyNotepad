@@ -1,0 +1,28 @@
+.menu-bar{
+	-fx-background-color: #222;
+	
+}
+.menu:hover
+{
+    -fx-background-color: darkgray;
+}
+.menu:showing
+{
+    -fx-background-color: darkgray;
+}
+.menu .label
+{
+    -fx-text-fill: white;
+}
+
+
+.menu-item .label{
+	-fx-text-fill: black;
+}
+
+.menu-item:hover{
+	 -fx-background-color: darkgray;
+}
+.menu-item:focused{
+	 -fx-background-color: darkgray;
+}
